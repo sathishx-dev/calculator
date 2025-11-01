@@ -1,25 +1,17 @@
-const display=document.getElementById('display')
+const display = document.getElementById('display');
 
 function buttonClick(value) {
-
-
-  if (value === "C" ) {
-    display.value = "";
-  } else if (value === "⌫") {
-    display.value = display.value.slice(0, -1); 
-  } else if (value === "=") {
-
-    var result = display.value.replace(/\^/g, "**");
-    display.value = eval(result);
-  } else if (value === "%") {
-    display.value = Number(display.value) / 100; 
-  } else {
-    if (!display.value || display.value === "undefined") {
-      display.value = "";
-    }
-    display.value += value;
+  if (value === 'C') return display.value = '';
+  if (value === '⌫') return display.value = display.value.slice(0, -1);
+  if (value === '=') {
+    display.value = eval(display.value.replace(/\^/g, '**'));
+    return;
   }
+  if (value === '%') return display.value = parseFloat(display.value) / 100 || '';
+  
+  display.value = (display.value || '') + value;
 }
+
 
 
 
